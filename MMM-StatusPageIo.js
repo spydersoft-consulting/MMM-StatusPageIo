@@ -89,7 +89,7 @@ Module.register("MMM-StatusPageIo", {
 		if (this.config.showComponents && this.StatusPageIoSummary.components.length > 0) {
 			this.StatusPageIoSummary.components.forEach((component) => {
 				wrapper.appendChild(this.getComponentCard(component));
-			})
+			});
 		}
 
 		return wrapper;
@@ -146,7 +146,6 @@ Module.register("MMM-StatusPageIo", {
 
 		// Status Icon
 		dateWrapper.appendChild(this.getComponentStatusIcon(component.status, ""));
-
 
 		var title = document.createElement("div");
 		title.classList.add("small", "bright", "no-wrap", "title");

@@ -45,15 +45,15 @@ Add the module to the modules array in the `config/config.js` file:
 
 ## Config Options
 
-| **Option**              | **Default** | **Description**                                                                                                                                                  |
-| ----------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pageId`        | '' | The Page ID of the StatusPage.io page to monitor.                                               |
-| `animationSpeed`        | 3000        | **Optional** The speed of the show and hide animations in milliseconds                                                                                           |
-| `useHeader` |    `true`         | **Optional** Whether or not to show the header |
-| `maxWidth`       |   `300px`          | **Optional** The maximum width for this module    |
-| `initialLoadDelay`               | `3250`      | **Optional** How long to wait, in milliseconds, before the first status check |                                                    |
-| `updateInterval`                 | `2 * 60 * 1000`      | **Optional** How often to check the status (defaults to 2 minutes) |
-| `showComponents`                 | `true`      | **Optional** Outputs messages to the console/log when set to `true`                                                                                              |
+| **Option**         | **Default**     | **Description**                                                               |
+| ------------------ | --------------- | ----------------------------------------------------------------------------- | --- |
+| `pageId`           | ''              | The Page ID of the StatusPage.io page to monitor.                             |
+| `animationSpeed`   | 3000            | **Optional** The speed of the show and hide animations in milliseconds        |
+| `useHeader`        | `true`          | **Optional** Whether or not to show the header                                |
+| `maxWidth`         | `300px`         | **Optional** The maximum width for this module                                |
+| `initialLoadDelay` | `3250`          | **Optional** How long to wait, in milliseconds, before the first status check |     |
+| `updateInterval`   | `2 * 60 * 1000` | **Optional** How often to check the status (defaults to 2 minutes)            |
+| `showComponents`   | `true`          | **Optional** Outputs messages to the console/log when set to `true`           |
 
 ## Config Examples
 
