@@ -3,9 +3,9 @@
 A [MagicMirror²](https://magicmirror.builders) helper module to display incident and component status from a [StatusPage.io](https://statuspage.io) page.
 
 [![Platform](https://img.shields.io/badge/platform-MagicMirror-informational)](https://MagicMirror.builders)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/ianperrin/MMM-StatusPageIo/master/LICENSE)
-![Test Status](https://github.com/ianperrin/MMM-StatusPageIo/actions/workflows/node.js.yml/badge.svg)
-[![Known Vulnerabilities](https://snyk.io/test/github/ianperrin/MMM-StatusPageIo/badge.svg)](https://snyk.io/test/github/ianperrin/MMM-StatusPageIo)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/spyder007/MMM-StatusPageIo/master/LICENSE)
+![Test Status](https://github.com/spyder007/MMM-StatusPageIo/actions/workflows/node.js.yml/badge.svg)
+[![Known Vulnerabilities](https://snyk.io/test/github/spyder007/MMM-StatusPageIo/badge.svg)](https://snyk.io/test/github/spyder007/MMM-StatusPageIo)
 
 ![Example Scheduling](.github/example.gif)
 
