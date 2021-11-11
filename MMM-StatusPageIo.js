@@ -56,6 +56,7 @@ Module.register("MMM-StatusPageIo", {
 		this.StatusPageIoSummary = data;
 		// console.log('processStatusPageIoSummary: ' + this.StatusPageIoSummary); // for checking //
 		this.loaded = true;
+		this.scheduleUpdate();
 	},
 
 	getDom: function () {
