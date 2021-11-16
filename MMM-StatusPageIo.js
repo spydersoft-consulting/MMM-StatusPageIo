@@ -1,5 +1,3 @@
-const { isThisISOWeek } = require("date-fns");
-
 /* Magic Mirror
  * Module: MMM-StatusPageIo
  *
