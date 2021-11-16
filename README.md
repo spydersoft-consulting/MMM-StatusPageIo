@@ -7,7 +7,7 @@ A [MagicMirror²](https://magicmirror.builders) helper module to display inciden
 ![Test Status](https://github.com/spyder007/MMM-StatusPageIo/actions/workflows/node.js.yml/badge.svg)
 [![Known Vulnerabilities](https://snyk.io/test/github/spyder007/MMM-StatusPageIo/badge.svg)](https://snyk.io/test/github/spyder007/MMM-StatusPageIo)
 
-![Example Scheduling](.github/example.gif)
+![Example Scheduling](.github/example-screenshot.png)
 
 ## Installation
 
