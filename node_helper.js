@@ -39,16 +39,19 @@ module.exports = NodeHelper.create({
 							name: incident.name,
 							status: incident.status,
 							impact: incident.impact,
+							componentId: incident.components[0].id,
 							started: formatDistanceToNow(startedAt, {})
 						});
 					});
 
-					var topLevelComponents = responseData.components.filter((comp) => comp.group_id === null);
+					// If the component has an incident, it'll be shown above.
+			   		var topLevelComponents = responseData.components.filter((comp) => comp.group_id === null && incidents.findIndex((inc) => inc.componentId === comp.id ) === -1);
 
 					var components = topLevelComponents.map((topComponent) => {
-						var childComponents = responseData.components.filter((comp) => comp.group_id === topComponent.id);
+						var childComponents = responseData.components.filter((comp) => comp.group_id === topComponent.id  && incidents.findIndex((inc) => inc.componentId === comp.id ) === -1);
 						var childComps = childComponents.map((comp) => {
 							return {
+								id: comp.id,
 								name: comp.name,
 								description: comp.description,
 								status: comp.status
@@ -56,6 +59,7 @@ module.exports = NodeHelper.create({
 						});
 
 						return {
+							id: topComponent.id,
 							name: topComponent.name,
 							description: topComponent.description,
 							status: topComponent.status,
@@ -72,7 +76,7 @@ module.exports = NodeHelper.create({
 					};
 
 					Log.info("[MMM-StatusPageIo] - Sending Summary Data");
-					Log.info("[MMM-StatusPageIo] - " + JSON.stringify(summaryData));
+					Log.debug("[MMM-StatusPageIo] - " + JSON.stringify(summaryData));
 					self.sendSocketNotification("STATUSPAGEIO_RESULT", summaryData);
 				});
 		} catch (error) {

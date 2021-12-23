@@ -14,7 +14,8 @@ Module.register("MMM-StatusPageIo", {
 		animationSpeed: 1000, // fade speed
 		initialLoadDelay: 1500,
 		updateInterval: 2 * 60 * 1000, // 2 minutes
-		showComponents: true
+		showComponents: true,
+		componentsToIgnore: []
 	},
 
 	requiresVersion: "2.1.0",
@@ -32,7 +33,7 @@ Module.register("MMM-StatusPageIo", {
 
 	scheduleUpdate: function (delay) {
 		var nextLoad = this.config.updateInterval;
-		if (typeof delay !== "undefined" && delay >= 0) {
+		if (typeof delay !== "undefined" && delay !== null && delay >= 0) {
 			nextLoad = delay;
 		}
 
@@ -49,13 +50,10 @@ Module.register("MMM-StatusPageIo", {
 			this.processStatusPageIoSummary(payload);
 			this.updateDom(this.config.animationSpeed);
 		}
-
-		this.updateDom(this.config.initialLoadDelay);
 	},
 
 	processStatusPageIoSummary: function (data) {
 		this.StatusPageIoSummary = data;
-		// console.log('processStatusPageIoSummary: ' + this.StatusPageIoSummary); // for checking //
 		this.loaded = true;
 		this.scheduleUpdate();
 	},
