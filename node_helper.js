@@ -45,10 +45,10 @@ module.exports = NodeHelper.create({
 					});
 
 					// If the component has an incident, it'll be shown above.
-			   		var topLevelComponents = responseData.components.filter((comp) => comp.group_id === null && incidents.findIndex((inc) => inc.componentId === comp.id ) === -1);
+					var topLevelComponents = responseData.components.filter((comp) => comp.group_id === null && incidents.findIndex((inc) => inc.componentId === comp.id) === -1);
 
 					var components = topLevelComponents.map((topComponent) => {
-						var childComponents = responseData.components.filter((comp) => comp.group_id === topComponent.id  && incidents.findIndex((inc) => inc.componentId === comp.id ) === -1);
+						var childComponents = responseData.components.filter((comp) => comp.group_id === topComponent.id && incidents.findIndex((inc) => inc.componentId === comp.id) === -1);
 						var childComps = childComponents.map((comp) => {
 							return {
 								id: comp.id,
