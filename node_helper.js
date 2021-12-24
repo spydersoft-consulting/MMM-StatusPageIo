@@ -17,11 +17,23 @@ module.exports = NodeHelper.create({
 	socketNotificationReceived: function (notification, payload) {
 		if (notification === "GET_STATUSPAGEIO_SUMMARY" && payload.pageId !== null) {
 			Log.info(`MMM-StatusPageIo - Processing GET_STATUSPAGEIO_SUMMARY notification for ${payload.pageId}`);
-			this.getStatusPageIoSummary(payload.pageId);
+			this.getStatusPageIoSummary(payload.pageId, payload.componentsToIgnore);
 		}
 	},
 
-	getStatusPageIoSummary: function (pageId) {
+	inGroup: function (comp, group = null) {
+		return comp.group_id === group;
+	},
+
+	hasIncident: function (incidents, comp) {
+		return incidents.findIndex((inc) => inc.componentId === comp.id) !== -1;
+	},
+
+	ignoreComponent: function (componentsToIgnore, compId) {
+		return componentsToIgnore.findIndex((comp) => comp === compId) !== -1;
+	},
+
+	getStatusPageIoSummary: function (pageId, componentsToIgnore) {
 		let self = this;
 		var url = "https://" + pageId + ".statuspage.io/api/v2/summary.json";
 		try {
@@ -35,20 +47,22 @@ module.exports = NodeHelper.create({
 					var incidents = [];
 					responseData.incidents.forEach((incident) => {
 						var startedAt = Date.parse(incident.started_at);
-						incidents.push({
-							name: incident.name,
-							status: incident.status,
-							impact: incident.impact,
-							componentId: incident.components[0].id,
-							started: formatDistanceToNow(startedAt, {})
-						});
+						if (!self.ignoreComponent(componentsToIgnore, incident.components[0].id)) {
+							incidents.push({
+								name: incident.name,
+								status: incident.status,
+								impact: incident.impact,
+								componentId: incident.components[0].id,
+								started: formatDistanceToNow(startedAt, {})
+							});
+						}
 					});
 
 					// If the component has an incident, it'll be shown above.
-					var topLevelComponents = responseData.components.filter((comp) => comp.group_id === null && incidents.findIndex((inc) => inc.componentId === comp.id) === -1);
+					var topLevelComponents = responseData.components.filter((comp) => comp.group_id === null && !self.hasIncident(incidents, comp) && !self.ignoreComponent(componentsToIgnore, comp.id));
 
 					var components = topLevelComponents.map((topComponent) => {
-						var childComponents = responseData.components.filter((comp) => comp.group_id === topComponent.id && incidents.findIndex((inc) => inc.componentId === comp.id) === -1);
+						var childComponents = responseData.components.filter((comp) => self.inGroup(comp, topComponent.id) && !self.hasIncident(incidents, comp) && !self.ignoreComponent(componentsToIgnore, comp.id));
 						var childComps = childComponents.map((comp) => {
 							return {
 								id: comp.id,

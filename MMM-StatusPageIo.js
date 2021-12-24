@@ -40,7 +40,7 @@ Module.register("MMM-StatusPageIo", {
 		var self = this;
 		setTimeout(function () {
 			Log.info("MMM-StatusPageIo - Requesting status update");
-			self.sendSocketNotification("GET_STATUSPAGEIO_SUMMARY", { pageId: self.config.pageId });
+			self.sendSocketNotification("GET_STATUSPAGEIO_SUMMARY", { pageId: self.config.pageId, componentsToIgnore: self.config.componentsToIgnore });
 		}, nextLoad);
 	},
 
