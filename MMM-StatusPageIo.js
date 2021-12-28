@@ -50,6 +50,10 @@ Module.register("MMM-StatusPageIo", {
 			this.processStatusPageIoSummary(payload);
 			this.updateDom(this.config.animationSpeed);
 		}
+		// If an error occurs, reschedule an update to try again
+		if (notification === "STATUSPAGEIO_RETRIEVE_ERROR") {
+			this.scheduleUpdate();
+		}
 	},
 
 	processStatusPageIoSummary: function (data) {
