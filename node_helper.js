@@ -92,7 +92,7 @@ module.exports = NodeHelper.create({
 				Log.debug("[MMM-StatusPageIo] - " + JSON.stringify(summaryData));
 				self.sendSocketNotification("STATUSPAGEIO_RESULT", summaryData);
 			})
-			.error((error) => {
+			.catch((error) => {
 				self.logError(error);
 				self.sendSocketNotification("STATUSPAGEIO_RETRIEVE_ERROR");
 			});

@@ -32,6 +32,15 @@
   color: #ff0000;
 }
 
+.MMM-StatusPageIo .impact-maintenance {
+  color: #0000ff;
+}
+
+
+.MMM-StatusPageIo .comp-status-under_maintenance {
+  color: #0000ff;
+}
+
 .MMM-StatusPageIo .comp-status-operational {
   color: #008000;
 }

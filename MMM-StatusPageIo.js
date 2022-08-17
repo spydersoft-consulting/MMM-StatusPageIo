@@ -214,6 +214,9 @@ Module.register("MMM-StatusPageIo", {
 	getComponentStatusIcon: function (status, iconCss) {
 		var faIconName = "";
 		switch (status) {
+			case "under_maintenance":
+				faIconName = "screwdriver-wrench";
+				break;
 			case "major_outage":
 				faIconName = "exclamation-circle";
 				break;
@@ -238,6 +241,9 @@ Module.register("MMM-StatusPageIo", {
 	getImpactIcon: function (indicator, iconCss) {
 		var faIconName = "";
 		switch (indicator) {
+			case "maintenance":
+				faIconName = "screwdriver-wrench";
+				break;
 			case "major":
 				faIconName = "exclamation-circle";
 				break;
