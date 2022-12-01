@@ -35,6 +35,10 @@ module.exports = NodeHelper.create({
 
 	getStatusPageIoSummary: function (pageId, componentsToIgnore) {
 		let self = this;
+		if (self.pending) {
+			return;
+		}
+		self.pending = true;
 		var url = "https://" + pageId + ".statuspage.io/api/v2/summary.json";
 		fetch(url, {
 			method: "get"
@@ -95,6 +99,9 @@ module.exports = NodeHelper.create({
 			.catch((error) => {
 				self.logError(error);
 				self.sendSocketNotification("STATUSPAGEIO_RETRIEVE_ERROR");
+			})
+			.finally(() => {
+				self.pending = false;
 			});
 	},
 

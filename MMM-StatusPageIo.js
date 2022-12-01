@@ -32,14 +32,18 @@ Module.register("MMM-StatusPageIo", {
 	},
 
 	scheduleUpdate: function (delay) {
+		var self = this;
+		if (self.isScheduled) {
+			return;
+		}
 		var nextLoad = this.config.updateInterval;
 		if (typeof delay !== "undefined" && delay !== null && delay >= 0) {
 			nextLoad = delay;
 		}
-
-		var self = this;
+		self.isScheduled = true;
 		setTimeout(function () {
 			Log.info("MMM-StatusPageIo - Requesting status update");
+			self.isScheduled = false;
 			self.sendSocketNotification("GET_STATUSPAGEIO_SUMMARY", { pageId: self.config.pageId, componentsToIgnore: self.config.componentsToIgnore });
 		}, nextLoad);
 	},
