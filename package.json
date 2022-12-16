@@ -9,7 +9,8 @@
 		"test:prettier": "prettier --check **/*.{js,css,json,md,yml}",
 		"test:js": "eslint *.js tests/**/*.js --config .eslintrc.json",
 		"lint:prettier": "prettier --write **/*.{js,css,json,md,yml}",
-		"lint:js": "eslint *.js tests/**/*.js --config .eslintrc.json --fix"
+		"lint:js": "eslint *.js tests/**/*.js --config .eslintrc.json --fix",
+		"prepare": "husky install"
 	},
 	"repository": {
 		"type": "git",
@@ -36,7 +37,8 @@
 		"eslint-config-prettier": "^8.1.0",
 		"eslint-plugin-jsdoc": "^30.7.8",
 		"eslint-plugin-prettier": "^3.4.0",
-		"mocha": "^8.2.1",
+		"husky": "^8.0.2",
+		"mocha": "^10.2.0",
 		"module-alias": "^2.2.2",
 		"prettier": "^2.2.1"
 	},
