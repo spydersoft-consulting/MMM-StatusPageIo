@@ -1,5 +1,6 @@
 import { AppearanceConfig } from "../types/config";
 import * as Display from "../types/display";
+import "./display.scss";
 
 export const getLoadingView = (config: AppearanceConfig): HTMLElement => {
   const wrapper = getWrapperElement(config);

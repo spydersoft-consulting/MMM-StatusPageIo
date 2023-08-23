@@ -1,4 +1,3 @@
-import "./custom.scss";
 import { ModuleNotification } from "./types/ModuleNotification";
 import { Config } from "./types/config";
 import * as Display from "./types/display";
