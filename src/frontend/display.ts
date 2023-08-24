@@ -4,7 +4,7 @@ import "./display.scss";
 
 export const getLoadingView = (config: AppearanceConfig): HTMLElement => {
   const wrapper = getWrapperElement(config);
-  wrapper.innerHTML = "Status Page";
+  wrapper.innerHTML = config.useHeader && config.headerText ? config.headerText : "Status Page";
   wrapper.classList.add("bright", "light", "small");
   return wrapper;
 };
@@ -19,7 +19,7 @@ export const getSummaryView = (summaryData: Display.SummaryData, config: Appeara
     const text = document.createElement("span");
     text.innerHTML = config.headerText ?? summaryData.title;
     header.appendChild(text);
-    header.appendChild(getImpactIcon(summaryData.indicator, ""));
+    header.appendChild(getImpactIcon(summaryData.indicator));
     wrapper.appendChild(header);
   }
 
@@ -65,7 +65,7 @@ const getIncidentCard = (incident: Display.Incident): HTMLElement => {
   const impactIconLabel = document.createElement("div");
   impactIconLabel.classList.add("bright", "expected_delivery_label");
   impactIconLabel.innerText = incident.impact;
-  dateWrapper.appendChild(getImpactIcon(incident.impact, ""));
+  dateWrapper.appendChild(getImpactIcon(incident.impact));
 
   dateWrapper.appendChild(impactIconLabel);
 
@@ -98,7 +98,7 @@ const getComponentCard = (component: Display.Component): HTMLElement => {
   card.appendChild(dataWrapper);
 
   // Status Icon
-  dateWrapper.appendChild(getComponentStatusIcon(component.status, ""));
+  dateWrapper.appendChild(getComponentStatusIcon(component.status));
 
   const title = document.createElement("div");
   title.classList.add("small", "bright", "no-wrap", "title");
@@ -128,39 +128,42 @@ const getComponentCard = (component: Display.Component): HTMLElement => {
   return card;
 };
 
-const getIncidentStatusWithIcon = (incident: Display.Incident) => {
+export const getIncidentStatusWithIcon = (incident: Display.Incident) => {
   const statusDiv = document.createElement("div");
   statusDiv.classList.add("xsmall", "no-wrap", "dimmed");
 
   const icon = document.createElement("i");
   let iconName = "";
   switch (incident.status) {
-    case "investigating":
+    case Display.IncidentStatus.INVESTIGATING:
       iconName = "search";
       break;
-    case "identified":
+    case Display.IncidentStatus.IDENTIFIED:
       iconName = "search-location";
       break;
-    case "monitoring":
+    case Display.IncidentStatus.MONITORING:
       iconName = "watchman-monitoring";
       break;
-    case "resolved":
+    case Display.IncidentStatus.RESOLVED:
       iconName = "check-square";
       break;
-    case "postmortem":
+    case Display.IncidentStatus.POSTMORTEM:
       iconName = "clipboard-check";
+      break;
+    case Display.IncidentStatus.SCHEDULED:
+      iconName = "calendar";
       break;
   }
 
   icon.classList.add("fa", "fa-fw", `fa-${iconName}`);
   statusDiv.appendChild(icon);
   const span = document.createElement("span");
-  span.innerText = incident.status;
+  span.innerText = `${incident.status.toString()}`;
   statusDiv.appendChild(span);
   return statusDiv;
 };
 
-const getComponentStatusIcon = (status: Display.ComponentStatus, iconCss?: string): HTMLElement => {
+export const getComponentStatusIcon = (status: Display.ComponentStatus): HTMLElement => {
   let faIconName = "";
   switch (status) {
     case Display.ComponentStatus.MAINTENANCE:
@@ -182,13 +185,10 @@ const getComponentStatusIcon = (status: Display.ComponentStatus, iconCss?: strin
   }
   const icon = document.createElement("i");
   icon.classList.add("fa", "fa-fw", "fa-" + faIconName, "comp-status-" + status);
-  if (iconCss && iconCss !== "") {
-    icon.classList.add(iconCss);
-  }
   return icon;
 };
 
-const getImpactIcon = (indicator: Display.Impact, iconCss: string): HTMLElement => {
+export const getImpactIcon = (indicator: Display.Impact): HTMLElement => {
   let faIconName = "";
   switch (indicator) {
     case Display.Impact.MAINTENANCE:
@@ -207,10 +207,8 @@ const getImpactIcon = (indicator: Display.Impact, iconCss: string): HTMLElement 
       faIconName = "check-circle";
       break;
   }
-  const icon = document.createElement("i");
+  const icon = document.createElement("i", {});
+  icon.setAttribute("role", "img");
   icon.classList.add("fa", "fa-fw", "fa-" + faIconName, "impact-" + indicator);
-  if (iconCss && iconCss !== "") {
-    icon.classList.add(iconCss);
-  }
   return icon;
 };
