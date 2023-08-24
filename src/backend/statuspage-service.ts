@@ -42,7 +42,7 @@ export class StatusPageService {
       .then(this.checkFetchStatus)
       .then((response) => response.json())
       .then((responseData: StatusPage.Summary) => {
-        //Log.info("[MMM-StatusPageIo] - Processing data");
+        this.logger.info("Processing data");
         const incidents: Display.Incident[] = [];
         responseData.incidents.forEach((incident) => {
           const startedAt = Date.parse(incident.started_at);
@@ -88,7 +88,7 @@ export class StatusPageService {
           components: components
         };
 
-        this.logger.info("Sending Summary Data");
+        this.logger.info(`Sending Summary Data - Component Count ${summaryData.components.length}`);
         return summaryData;
       })
       .catch((error) => {
