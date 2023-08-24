@@ -1,9 +1,9 @@
 import { AppearanceConfig } from "../types/config";
-import * as Display from "../types/display";
-import { getImpactIcon, getLoadingView, getComponentStatusIcon } from "./display";
-import { getByText } from "@testing-library/dom";
+import { getImpactIcon, getLoadingView, getComponentStatusIcon, getIncidentStatusWithIcon } from "./display";
+import { getByRole, getByText } from "@testing-library/dom";
 import "@testing-library/jest-dom";
-//import * as TestObjects from "./testobjects";
+import * as TestObjects from "./testobjects";
+import * as Display from "../types/display";
 
 const displayWithHeader: AppearanceConfig = {
   useHeader: true,
@@ -86,39 +86,38 @@ describe("Functions in display", function () {
     });
   });
 
-  // describe("getIncidentStatusWithIcon", function () {
-  //     it(`investigating should return search icon`, function () {
-  //         const container = getIncidentStatusWithIcon(TestObjects.InvestigatingCriticalIncident);
-  //         const img = getByText(container, TestObjects.InvestigatingCriticalIncident.status)
-  //         expect(img).toHaveClass("fa", "fa-fw", "fa-search");
-  //     });
+  describe("getIncidentStatusWithIcon", function () {
+    it(`investigating should return search icon`, function () {
+      const container = getIncidentStatusWithIcon(TestObjects.InvestigatingCriticalIncident);
+      const img = getByRole(container, "img");
+      expect(img).toHaveClass("fa", "fa-fw", "fa-search");
+    });
 
-  //     it(`identified should return search location icon`, function () {
-  //         const container = getIncidentStatusWithIcon(TestObjects.IdentifiedCriticalIncident);
-  //         const img = getByText(container, TestObjects.IdentifiedCriticalIncident.status)
-  //         expect(img).toHaveClass("fa", "fa-fw", "fa-search-location");
-  //     });
+    it(`identified should return search location icon`, function () {
+      const container = getIncidentStatusWithIcon(TestObjects.IdentifiedCriticalIncident);
+      const img = getByRole(container, "img");
+      expect(img).toHaveClass("fa", "fa-fw", "fa-search-location");
+    });
 
-  //     it(`monitoring should return watchman monitoring icon`, function () {
-  //         const container = getIncidentStatusWithIcon(TestObjects.MonitoringCriticalIncident);
-  //         const img = getByText(container, TestObjects.MonitoringCriticalIncident.status)
-  //         expect(img).toHaveClass("fa", "fa-fw", "fa-watchman-monitoring");
-  //     });
-  //     it(`resolved should return check icon`, function () {
-  //         const container = getIncidentStatusWithIcon(TestObjects.ResolvedCriticalIncident);
-  //         const img = getByText(container, TestObjects.ResolvedCriticalIncident.status)
-  //         expect(img).toHaveClass("fa", "fa-fw", "fa-check-square");
-  //     });
-  //     it(`postmortem should return clipboard icon`, function () {
-  //         const container = getIncidentStatusWithIcon(TestObjects.PostmortemCriticalIncident);
-  //         const img = getByText(container, TestObjects.PostmortemCriticalIncident.status)
-  //         expect(img).toHaveClass("fa", "fa-fw", "fa-clipboard-check");
-  //     });
-  //     it(`scheduled should return calendar icon`, function () {
-  //         const container = getIncidentStatusWithIcon(TestObjects.InvestigatingCriticalIncident);
-  //         const img = getByText(container, TestObjects.InvestigatingCriticalIncident.status)
-  //         expect(img).toHaveClass("fa", "fa-fw", "fa-calendar");
-  //     });
-
-  // });
+    it(`monitoring should return watchman monitoring icon`, function () {
+      const container = getIncidentStatusWithIcon(TestObjects.MonitoringCriticalIncident);
+      const img = getByRole(container, "img");
+      expect(img).toHaveClass("fa", "fa-fw", "fa-watchman-monitoring");
+    });
+    it(`resolved should return check icon`, function () {
+      const container = getIncidentStatusWithIcon(TestObjects.ResolvedCriticalIncident);
+      const img = getByRole(container, "img");
+      expect(img).toHaveClass("fa", "fa-fw", "fa-check-square");
+    });
+    it(`postmortem should return clipboard icon`, function () {
+      const container = getIncidentStatusWithIcon(TestObjects.PostmortemCriticalIncident);
+      const img = getByRole(container, "img");
+      expect(img).toHaveClass("fa", "fa-fw", "fa-clipboard-check");
+    });
+    it(`scheduled should return calendar icon`, function () {
+      const container = getIncidentStatusWithIcon(TestObjects.ScheduledCriticalIncident);
+      const img = getByRole(container, "img");
+      expect(img).toHaveClass("fa", "fa-fw", "fa-calendar");
+    });
+  });
 });

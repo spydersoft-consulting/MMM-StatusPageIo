@@ -85,7 +85,7 @@ const getIncidentCard = (incident: Display.Incident): HTMLElement => {
   return card;
 };
 
-const getComponentCard = (component: Display.Component): HTMLElement => {
+export const getComponentCard = (component: Display.Component): HTMLElement => {
   const card = document.createElement("div");
   card.classList.add("component-wrapper");
 
@@ -156,9 +156,10 @@ export const getIncidentStatusWithIcon = (incident: Display.Incident) => {
   }
 
   icon.classList.add("fa", "fa-fw", `fa-${iconName}`);
+  icon.setAttribute("role", "img");
   statusDiv.appendChild(icon);
   const span = document.createElement("span");
-  span.innerText = `${incident.status.toString()}`;
+  span.innerHTML = `${incident.status}`;
   statusDiv.appendChild(span);
   return statusDiv;
 };
