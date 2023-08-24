@@ -61,7 +61,6 @@ jobs:
 
       - name: Run tests
         run: |
-          cd MagicMirror/modules/MMM-StatusPageIo
           npm install
           npm run test-ci
       - name: SonarQube Scan
