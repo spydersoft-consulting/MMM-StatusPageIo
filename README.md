@@ -29,10 +29,10 @@ Go to the modules folder:
 cd MMM-StatusPageIo
 ```
 
-Install the dependencies:
+Install the dependencies and transpile the Typescript
 
 ```
-npm install --production
+npm install
 ```
 
 Add the module to the modules array in the `config/config.js` file:
@@ -74,9 +74,14 @@ Add the module to the modules array in the `config/config.js` file:
 
 To update the module to the latest version, use your terminal to go to your MMM-StatusPageIo module folder and type the following command:
 
-```
+```bash
 git pull
+npm install
 ```
 
 If you haven't changed the modules, this should work without any problems.
 Type `git status` to see your changes, if there are any, you can reset them with `git reset --hard`. After that, git pull should be possible.
+
+## Contributing
+
+Please read the [Contribution Guide](CONTRIBUTING.md) for details on contributing to the project.

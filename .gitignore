@@ -72,3 +72,12 @@ Temporary Items
 
 
 .vscode/*
+
+# Ignore rollup output
+MMM-StatusPageIo.js
+node_helper.js
+MMM-StatusPageIo.css
+.eslintcache
+
+output/*
+junit.xml

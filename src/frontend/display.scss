@@ -1,0 +1,110 @@
+$operational: #008000;
+$degraded: #ffff00;
+$partial: #ffa500;
+$major: #ff0000;
+$maintenance: #0000ff;
+
+.MMM-StatusPageIo {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #ffffff;
+  /* Color the ID #. Default is white. */
+  font-size: 16px;
+  /* Adjust to your liking, line by line */
+
+  .header {
+    color: #aaa;
+    /* Color the title text. Default is white. */
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .impact-none {
+    color: $operational;
+  }
+
+  .impact-minor {
+    color: $degraded;
+  }
+
+  .impact-major {
+    color: $partial;
+  }
+
+  .impact-critical {
+    color: $major;
+  }
+
+  .impact-maintenance {
+    color: $maintenance;
+  }
+
+  .comp-status-under_maintenance {
+    color: $maintenance;
+  }
+
+  .comp-status-operational {
+    color: $operational;
+  }
+
+  .comp-status-degraded_performance {
+    color: $degraded;
+  }
+
+  .comp-status-partial_outage {
+    color: $partial;
+  }
+
+  .comp-status-major_outage {
+    color: $major;
+  }
+}
+
+.incident-wrapper {
+  border-bottom: 0.5px solid #666;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+
+  :last-child {
+    border: none;
+  }
+}
+
+
+.component-wrapper {
+  border-bottom: 0.5px solid #666;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+
+  :last-child {
+    border: none;
+  }
+}
+
+/* Left flex content */
+.status-wrapper {
+  font-size: 50px;
+  max-width: 50px;
+  display: flex;
+  line-height: 1;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  flex-basis: 20%;
+
+  .fa {
+    font-size: 40px;
+  }
+}
+
+.expected_delivery_label {
+  font-size: 16px;
+}
+
+/* Right flex content */
+.data-wrapper {
+  text-align: left;
+  margin-left: 15px;
+  overflow: hidden;
+}
