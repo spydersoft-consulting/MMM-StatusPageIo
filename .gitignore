@@ -78,3 +78,5 @@ MMM-StatusPageIo.js
 node_helper.js
 MMM-StatusPageIo.css
 .eslintcache
+
+output/*
