@@ -49,8 +49,8 @@ export class StatusPageService {
           if (!this.ignoreComponent(incident.components[0].id)) {
             incidents.push({
               name: incident.name,
-              status: incident.status,
-              impact: incident.impact,
+              status: incident.status as Display.IncidentStatus,
+              impact: incident.impact as Display.Impact,
               componentId: incident.components[0].id,
               started: formatDistanceToNow(startedAt, {})
             });
@@ -67,7 +67,7 @@ export class StatusPageService {
               id: comp.id,
               name: comp.name,
               description: comp.description,
-              status: comp.status
+              status: comp.status as Display.ComponentStatus
             };
           });
 
@@ -75,14 +75,14 @@ export class StatusPageService {
             id: topComponent.id,
             name: topComponent.name,
             description: topComponent.description,
-            status: topComponent.status,
+            status: topComponent.status as Display.ComponentStatus,
             children: childComps
           };
         });
 
         const summaryData: Display.SummaryData = {
           title: responseData.page.name,
-          indicator: responseData.status.indicator,
+          indicator: responseData.status.indicator as Display.Impact,
           statusDescription: responseData.status.description,
           incidents: incidents,
           components: components

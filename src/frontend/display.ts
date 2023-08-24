@@ -105,7 +105,7 @@ const getComponentCard = (component: Display.Component): HTMLElement => {
   title.innerHTML = component.name;
   dataWrapper.appendChild(title);
 
-  if (component.children && component.children.length === 0) {
+  if (component.children && component.children.length !== 0) {
     // Render Child components
     component.children.forEach((child) => {
       const childDiv = document.createElement("div");
@@ -160,21 +160,22 @@ const getIncidentStatusWithIcon = (incident: Display.Incident) => {
   return statusDiv;
 };
 
-const getComponentStatusIcon = (status: string, iconCss?: string): HTMLElement => {
+const getComponentStatusIcon = (status: Display.ComponentStatus, iconCss?: string): HTMLElement => {
   let faIconName = "";
   switch (status) {
-    case "under_maintenance":
+    case Display.ComponentStatus.MAINTENANCE:
       faIconName = "screwdriver-wrench";
       break;
-    case "major_outage":
+    case Display.ComponentStatus.MAJOR_OUTAGE:
       faIconName = "exclamation-circle";
       break;
-    case "partial_outage":
+    case Display.ComponentStatus.PARTIAL_OUTAGE:
       faIconName = "exclamation-triangle";
       break;
-    case "degraded_performance":
+    case Display.ComponentStatus.DEGRADED:
       faIconName = "times-circle";
       break;
+    case Display.ComponentStatus.OPERATIONAL:
     default:
       faIconName = "check-circle";
       break;
@@ -187,19 +188,19 @@ const getComponentStatusIcon = (status: string, iconCss?: string): HTMLElement =
   return icon;
 };
 
-const getImpactIcon = (indicator: string, iconCss: string): HTMLElement => {
+const getImpactIcon = (indicator: Display.Impact, iconCss: string): HTMLElement => {
   let faIconName = "";
   switch (indicator) {
-    case "maintenance":
+    case Display.Impact.MAINTENANCE:
       faIconName = "screwdriver-wrench";
       break;
-    case "major":
+    case Display.Impact.MAJOR:
       faIconName = "exclamation-circle";
       break;
-    case "minor":
+    case Display.Impact.MINOR:
       faIconName = "exclamation-triangle";
       break;
-    case "critical":
+    case Display.Impact.CRITICAL:
       faIconName = "times-circle";
       break;
     default:
