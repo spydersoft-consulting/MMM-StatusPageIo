@@ -1,9 +1,9 @@
 import fetch, { Response } from "node-fetch";
-import { LogWrapper } from "../utilities/logging";
-import { DataConfig } from "../types/config";
-import * as StatusPage from "../types/statuspage";
-import * as Display from "../types/display";
-import { ConvertComponentToDisplay, ConvertIncidentToDisplay } from "../frontend/DtoMappers";
+import { LogWrapper } from "../utilities/LogWrapper";
+import { DataConfig } from "../types/Config";
+import * as StatusPage from "../types/StatusPage";
+import * as Display from "../types/Display";
+import { ConvertComponentToDisplay, ConvertIncidentToDisplay } from "./DtoMappers";
 
 export class StatusPageService {
   pending: boolean = false;

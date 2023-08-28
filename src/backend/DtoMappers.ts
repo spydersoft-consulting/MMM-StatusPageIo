@@ -1,5 +1,5 @@
-import * as Display from "../types/display";
-import * as StatusPage from "../types/statuspage";
+import * as Display from "../types/Display";
+import * as StatusPage from "../types/StatusPage";
 import { formatDistanceToNow } from "date-fns";
 
 export const ConvertIncidentToDisplay = (incident: StatusPage.Incident): Display.Incident => {

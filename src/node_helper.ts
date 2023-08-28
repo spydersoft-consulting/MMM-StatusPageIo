@@ -1,10 +1,10 @@
 import * as Log from "logger";
 import * as NodeHelper from "node_helper";
-import { LogWrapper } from "./utilities/logging";
+import { LogWrapper } from "./utilities/LogWrapper";
 import { ModuleNotification } from "./types/ModuleNotification";
-import { StatusPageService } from "./backend/statuspage-service";
-import { DataConfig, isDataConfig } from "./types/config";
-import * as Display from "./types/display";
+import { StatusPageService } from "./backend/StatusPageService";
+import { DataConfig, isDataConfig } from "./types/Config";
+import * as Display from "./types/Display";
 
 const logger = new LogWrapper("MMM-StatusPageIo", Log);
 
@@ -12,7 +12,7 @@ module.exports = NodeHelper.create({
   service: {} as StatusPageService,
 
   start: function () {
-    Log.info("Starting node_helper for: " + this.name);
+    logger.info("Starting node_helper" + this.name);
   },
 
   socketNotificationReceived: function (notification, payload) {

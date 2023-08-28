@@ -1,4 +1,4 @@
-import * as Display from "../types/display";
+import * as Display from "../types/Display";
 
 const baseProps = {
   componentId: "test",

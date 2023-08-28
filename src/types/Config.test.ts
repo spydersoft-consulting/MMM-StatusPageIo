@@ -1,4 +1,4 @@
-import { isDataConfig } from "./config";
+import { isDataConfig } from "./Config";
 
 describe("Functions in config", function () {
   describe("isDataConfig", function () {

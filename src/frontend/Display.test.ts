@@ -1,9 +1,9 @@
-import { AppearanceConfig } from "../types/config";
-import { getImpactIcon, getLoadingView, getComponentStatusIcon, getIncidentStatusWithIcon } from "./display";
+import { AppearanceConfig } from "../types/Config";
+import { getImpactIcon, getLoadingView, getComponentStatusIcon, getIncidentStatusWithIcon } from "./Display";
 import { getByRole, getByText } from "@testing-library/dom";
 import "@testing-library/jest-dom";
-import * as TestObjects from "./testobjects";
-import * as Display from "../types/display";
+import * as TestObjects from "./TestObjects";
+import * as Display from "../types/Display";
 
 const displayWithHeader: AppearanceConfig = {
   useHeader: true,
