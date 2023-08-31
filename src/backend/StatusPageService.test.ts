@@ -1,8 +1,8 @@
 import { Response } from "node-fetch";
-import { LogWrapper } from "../utilities/logging";
-import { StatusPageService } from "./statuspage-service";
+import { LogWrapper } from "../utilities/LogWrapper";
+import { StatusPageService } from "./StatusPageService";
 
-jest.mock("../utilities/logging", () => {
+jest.mock("../utilities/LogWrapper", () => {
   return {
     LogWrapper: jest.fn().mockImplementation(() => {
       return {

@@ -1,9 +1,9 @@
 import fetch, { Response } from "node-fetch";
-import { LogWrapper } from "../utilities/logging";
-import { DataConfig } from "../types/config";
-import { formatDistanceToNow } from "date-fns";
-import * as StatusPage from "../types/statuspage";
-import * as Display from "../types/display";
+import { LogWrapper } from "../utilities/LogWrapper";
+import { DataConfig } from "../types/Config";
+import * as StatusPage from "../types/StatusPage";
+import * as Display from "../types/Display";
+import { ConvertComponentToDisplay, ConvertIncidentToDisplay } from "./DtoMappers";
 
 export class StatusPageService {
   pending: boolean = false;
@@ -45,15 +45,8 @@ export class StatusPageService {
         this.logger.info("Processing data");
         const incidents: Display.Incident[] = [];
         responseData.incidents.forEach((incident) => {
-          const startedAt = Date.parse(incident.started_at);
           if (!this.ignoreComponent(incident.components[0].id)) {
-            incidents.push({
-              name: incident.name,
-              status: incident.status as Display.IncidentStatus,
-              impact: incident.impact as Display.Impact,
-              componentId: incident.components[0].id,
-              started: formatDistanceToNow(startedAt, {})
-            });
+            incidents.push(ConvertIncidentToDisplay(incident));
           }
         });
 
@@ -62,22 +55,9 @@ export class StatusPageService {
 
         const components: Display.Component[] = topLevelComponents.map((topComponent) => {
           const childComponents = responseData.components.filter((comp) => this.inGroup(comp, topComponent.id) && !this.hasIncident(incidents, comp) && !this.ignoreComponent(comp.id));
-          const childComps = childComponents.map((comp) => {
-            return {
-              id: comp.id,
-              name: comp.name,
-              description: comp.description,
-              status: comp.status as Display.ComponentStatus
-            };
-          });
+          const childComps = childComponents.map((comp) => ConvertComponentToDisplay(comp));
 
-          return {
-            id: topComponent.id,
-            name: topComponent.name,
-            description: topComponent.description,
-            status: topComponent.status as Display.ComponentStatus,
-            children: childComps
-          };
+          return ConvertComponentToDisplay(topComponent, childComps);
         });
 
         const summaryData: Display.SummaryData = {

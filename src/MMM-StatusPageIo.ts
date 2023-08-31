@@ -1,8 +1,8 @@
 import { ModuleNotification } from "./types/ModuleNotification";
-import { Config } from "./types/config";
-import * as Display from "./types/display";
-import { LogWrapper } from "./utilities/logging";
-import { getLoadingView, getSummaryView } from "./frontend/display";
+import { Config } from "./types/Config";
+import * as Display from "./types/Display";
+import { LogWrapper } from "./utilities/LogWrapper";
+import { getLoadingView, getSummaryView } from "./frontend/Display";
 import * as Log from "logger";
 
 Module.register<Config>("MMM-StatusPageIo", {

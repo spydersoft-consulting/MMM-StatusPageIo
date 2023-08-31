@@ -11,7 +11,8 @@ export enum Impact {
   CRITICAL = "critical",
   MAINTENANCE = "maintenance",
   MAJOR = "major",
-  MINOR = "minor"
+  MINOR = "minor",
+  NONE = "none"
 }
 
 export enum ComponentStatus {
